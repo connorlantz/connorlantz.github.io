@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Project: Scrabble Bot</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="single is-preload">
+
+		
+			<!-- Wrapper -->
+				<div id="wrapper">
+
+					<!-- Header -->
+						<header id="header">
+							<h1><a href="../B projects.html">Projects</a></h1>
+						</header>
+
+
+				
+				
+
+				
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2>Project: Scrabble Bot</h2>
+										<p>You better watch out Nana, I can beat you at scrabble now.</p>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2023-09-17">September 17, 2023</time>
+										<a href="#" class="author"><span class="name">Connor Lantz</span><img src="../images/avatar.jpg" alt="" /></a>
+									</div>
+								</header>
+								<section>		
+
+									<div class="box alt">
+										<div class="row gtr-uniform">
+											<div class="col-12">
+												<article class="post">
+													<h2>How it Began</h2>
+													<span class="image featured"><img src="../images/Scrabble Bot/Srabble Bot By Connor.png" alt="" /></span>
+
+													<p>In the summer of 2022, a significant Scrabble loss to my Nana ignited a quest for redemption. Faced with two options – master the game or engineer a Scrabble bot to excel on my behalf – I chose the latter.</p>
+													<p>This project's objective was to craft a Scrabble bot capable of making highly effective word choices. To streamline the challenge, I excluded the 'any letter' tile, focusing on word selection rather than playing entire games. User familiarity with Scrabble rules was expected, with minimal emphasis on user-friendliness in the interface.</p>
+													<p>The project unfolded as a complex endeavor, quite distinct from my previous Wordle bot. Scrabble's multidimensional nature, with countless possibilities, required a systematic approach.</p>
+												</article>
+											</div>
+
+											<div class="col-12">
+												<article class="post">
+													<h2>How I did it</h2>
+													<ul>
+														<li>
+															<h3>Create the virtural playing board</h3>
+															<p>Begin by setting up a virtual 15x15 game board, which serves as the foundation for playing the game. This board is essential for visualizing and managing the game state.</p>
+															
+														</li>
+														<li>
+															<h3>Word Placement and Validation</h3>
+															Allow the user to place a word on the board by interacting with a series of prompts. These prompts determine the starting coordinate, direction, and the word to be played. Validate the user's input to ensure it meets the following criteria:
+															<ol>
+																<li>The play stays within the 15x15 board boundaries.</li>
+																<li>Existing words on the board are not overwritten.</li>
+																<li>Check the validity of each row and column individually, ensuring that all words formed are present in the dictionary. This step accounts for multiple words created in one play.</li>
+
+															</ol>
+														</li>
+														<li>
+															<h3>Scoring Plays</h3>
+															Implement a scoring system for each play based on Scrabble's specific scoring guidelines. This is achieved through the following steps:
+															<ol>
+																<li>Identify new words on the board resulting from the user's play by comparing the board before and after the play.</li>
+																<li>Extract coordinates of the new words and consider any word or letter multipliers present.</li>
+																<li>Score each word letter by letter, applying multipliers as necessary.</li>
+																<li>Sum up the scores of all new words created.</li>
+																<li>If the user uses all 7 tiles in their play, award an additional 50 points for achieving a "bingo."</li>
+															</ol>
+
+														</li>
+														<li>
+															<h3>Making a scrabble bot</h3>
+															Allow the user to place a word on the board by interacting with a series of prompts. These prompts determine the starting coordinate, direction, and the word to be played. Validate the user's input to ensure it meets the following criteria:
+															<ol>
+																<li>Begin by breaking down each row and column into a string of letters and blank spaces. For instance, consider a row on the board as follows: "A _ _ _ S T R I N G _ _ _ I S."</li>
+																<li>Identify potential starting points for new words within the row or column. In the example above, you can theoretically begin a word at positions like: "<b>A</b> _ <b>_ _ S</b> T R I N G _ <b>_ _ I</b> S." A word can only start where no letter is present in the preceding tile.</li>
+																<li>Check the validity of each row and column individually, ensuring that all words formed are present in the dictionary. This step accounts for multiple words created in one play.</li>
+																<li>For each starting position, establish a set of constraints that can be applied to words in the Scrabble dictionary. For instance, if focusing on the 'S' in the given example, constraints might be: "the first six letters are STRING, the next 3 letters can be any, and the last two letters are IS." The word does not need to occupy the entire section, but if it does, these constraints must be met. Example guesses for this spot could be STRINGS or STRINGY.</li>
+																<li>For each possible move, eliminate those that contain letters not present in the user's current tile rack.</li>
+																<li>Utilize the previously created validation function to validate all identified possible moves. This step is crucial as the potential words are initially chosen considering only one dimension. Adjacent rows or columns may affect the validity of the guess.</li>
+																<li>Once a move is validated, apply it to the point calculator developed earlier to calculate the score.</li>
+																<li>Present the user with the top 10 plays to enable them to select the most suitable move.</li>
+															</ol>
+														</li>
+													</ul>
+
+												</article>
+											</div>
+
+											<div class="col-12">
+												<article class="post">
+													<h2>How it ends?</h2>
+													<p>This project has been a significant challenge, as it was developed using basic Python functions without relying on advanced techniques. If you're interested in inspecting the code, I've attached it <a href="scrabbleBot R10.py">here</a>, along with the dictionary <a href="sowpods.txt">here</a>. The breakdown above provides a high-level overview, but there are numerous technical intricacies involved in achieving these processes. I take pride in creating an intuitive solution for this complex problem. On average, my computer can generate a guess in about 90 seconds, depending on the board's complexity, and will typically average around 500 points in 2-player Scrabble, if decent letters are picked.</p>
+													<p>In the future, I plan to incorporate a feature allowing the use of 'any letter' tiles. However, I'm cautious about potential performance issues that may arise, as it could extend the time needed to make a guess, potentially impacting the user's experience. Additionally, I aim to enhance the user interface to make the program more user-friendly and intuitive.</p>
+													<p>If you intend to download the <a href="scrabbleBot R10.py">Python file</a> and its associated <a href="sowpods.txt">dictionary</a>, please ensure they are placed in the same folder for the bot to access. To use the program, press 'play,' and you can make a move using 'z.move()' or engage the bot with 'z.bestMove()' in the command line. Enjoy the game!</p>
+												</article>
+
+											</div>
+																						
+											
+
+										</div>
+									</div>
+								</section>
+
+								
+							</article>
+
+					</div>
+
+					<!-- Footer -->
+					<section id="footer">
+						<ul class="icons">
+							<li><a href="https://ca.linkedin.com/in/connor-lantz-6a84a3231?trk=public_profile_samename-profile" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="mailto:lantz.coml@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">Design: <a href="http://html5up.net">HTML5 UP</a>. </p>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
